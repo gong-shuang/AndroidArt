@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidArt.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidArt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chapter_1/AndroidArt.chapter_1.iml" filepath="$PROJECT_DIR$/.idea/modules/chapter_1/AndroidArt.chapter_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chapter_11/AndroidArt.chapter_11.iml" filepath="$PROJECT_DIR$/.idea/modules/chapter_11/AndroidArt.chapter_11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chapter_12/AndroidArt.chapter_12.iml" filepath="$PROJECT_DIR$/.idea/modules/chapter_12/AndroidArt.chapter_12.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chapter_15/AndroidArt.chapter_15.iml" filepath="$PROJECT_DIR$/.idea/modules/chapter_15/AndroidArt.chapter_15.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chapter_2/AndroidArt.chapter_2.iml" filepath="$PROJECT_DIR$/.idea/modules/chapter_2/AndroidArt.chapter_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chapter_3/AndroidArt.chapter_3.iml" filepath="$PROJECT_DIR$/.idea/modules/chapter_3/AndroidArt.chapter_3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chapter_4/AndroidArt.chapter_4.iml" filepath="$PROJECT_DIR$/.idea/modules/chapter_4/AndroidArt.chapter_4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chapter_5/AndroidArt.chapter_5.iml" filepath="$PROJECT_DIR$/.idea/modules/chapter_5/AndroidArt.chapter_5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chapter_6/AndroidArt.chapter_6.iml" filepath="$PROJECT_DIR$/.idea/modules/chapter_6/AndroidArt.chapter_6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chapter_7/AndroidArt.chapter_7.iml" filepath="$PROJECT_DIR$/.idea/modules/chapter_7/AndroidArt.chapter_7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chapter_8/AndroidArt.chapter_8.iml" filepath="$PROJECT_DIR$/.idea/modules/chapter_8/AndroidArt.chapter_8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crashTest/AndroidArt.crashTest.iml" filepath="$PROJECT_DIR$/.idea/modules/crashTest/AndroidArt.crashTest.iml" />
+    </modules>
+  </component>
+</project>
