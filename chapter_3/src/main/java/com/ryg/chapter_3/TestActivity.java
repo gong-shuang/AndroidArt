@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,6 +35,7 @@ public class TestActivity extends Activity implements OnClickListener,
 
     private int mCount = 0;
 
+    // 3.3.3 使用延时策略  实现  弹性滑动
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -41,10 +43,14 @@ public class TestActivity extends Activity implements OnClickListener,
             case MESSAGE_SCROLL_TO: {
                 mCount++;
                 if (mCount <= FRAME_COUNT) {
+                    // 方式1： scrollTo
                     float fraction = mCount / (float) FRAME_COUNT;
                     int scrollX = (int) (fraction * 100);
                     mButton1.scrollTo(scrollX, 0);
+
+                    //下一帧
                     mHandler.sendEmptyMessageDelayed(MESSAGE_SCROLL_TO, DELAYED_TIME);
+                    Log.d(TAG, "System.time:" + SystemClock.uptimeMillis() + ",scrollX=" + scrollX);
                 }
                 break;
             }
@@ -82,18 +88,23 @@ public class TestActivity extends Activity implements OnClickListener,
     @Override
     public void onClick(View v) {
         if (v == mButton1) {
-             mButton1.setTranslationX(100);
+//             mButton1.setTranslationX(100);  //内容和本身都变
+//             mButton1.scrollTo(-100, 0);  //内容变，本书不变
 
              Log.d(TAG, "button1.left=" + mButton1.getLeft());
              Log.d(TAG, "button1.x=" + mButton1.getX());
-             ObjectAnimator.ofFloat(mButton1, "translationX", 0, 100).setDuration(1000).start();
-             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mButton1.getLayoutParams();
-             params.width += 100;
-             params.leftMargin += 100;
-             mButton1.requestLayout();
-             mButton1.setLayoutParams(params);
+             //方式2：动画
+//             ObjectAnimator.ofFloat(mButton1, "translationX", 0, 100).setDuration(1000).start();
 
-             //动画
+             //方式3：修改布局参数
+//             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mButton1.getLayoutParams();
+//             params.width += 100;
+//             params.leftMargin += 100;
+//             mButton1.requestLayout();
+//             mButton1.setLayoutParams(params);
+
+             //方式2：动画
+            // 3.3.2  实现弹性滑动
              final int startX = 0;
              final int deltaX = 100;
              ValueAnimator animator = ValueAnimator.ofInt(0, 1).setDuration(1000);
@@ -101,12 +112,13 @@ public class TestActivity extends Activity implements OnClickListener,
                  @Override
                  public void onAnimationUpdate(ValueAnimator animator) {
                  float fraction = animator.getAnimatedFraction();
+                 Log.d(TAG, "fraction=" + fraction);
                  mButton1.scrollTo(startX + (int) (deltaX * fraction), 0);
                  }
              });
              animator.start();
 
-            mHandler.sendEmptyMessageDelayed(MESSAGE_SCROLL_TO, DELAYED_TIME);
+//            mHandler.sendEmptyMessageDelayed(MESSAGE_SCROLL_TO, DELAYED_TIME);
         }
         else if (v == mButton2) {
             Log.d(TAG, "button2.left=" + mButton2.getLeft());

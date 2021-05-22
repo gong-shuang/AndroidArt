@@ -54,8 +54,9 @@ public class TestButton extends TextView {
             Log.d(TAG, "move, deltaX:" + deltaX + " deltaY:" + deltaY);
             int translationX = (int)ViewHelper.getTranslationX(this) + deltaX;
             int translationY = (int)ViewHelper.getTranslationY(this) + deltaY;
-            ViewHelper.setTranslationX(this, translationX);
-            ViewHelper.setTranslationY(this, translationY);
+//            ViewHelper.setTranslationX(this, translationX);
+//            ViewHelper.setTranslationY(this, translationY);
+            scrollTo(translationX, translationY);
             break;
         }
         case MotionEvent.ACTION_UP: {
