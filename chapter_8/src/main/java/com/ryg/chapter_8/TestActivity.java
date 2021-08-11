@@ -5,6 +5,7 @@ import com.ryg.chapter_8.R;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -46,7 +47,13 @@ public class TestActivity extends Activity implements OnTouchListener {
             mLayoutParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL
                     | LayoutParams.FLAG_NOT_FOCUSABLE
                     | LayoutParams.FLAG_SHOW_WHEN_LOCKED;
-            mLayoutParams.type = LayoutParams.TYPE_SYSTEM_ERROR;
+//            mLayoutParams.type = LayoutParams.TYPE_SYSTEM_ERROR;
+            // 设置窗体显示类型
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                mLayoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+            } else {
+                mLayoutParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+            }
             mLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
             mLayoutParams.x = 100;
             mLayoutParams.y = 300;

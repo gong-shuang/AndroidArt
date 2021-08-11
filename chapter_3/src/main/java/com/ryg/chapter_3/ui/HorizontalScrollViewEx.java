@@ -47,6 +47,7 @@ public class HorizontalScrollViewEx extends ViewGroup {
         mVelocityTracker = VelocityTracker.obtain();
     }
 
+    //拦截事件，返回true后，事件就不会再传递到子view
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
         boolean intercepted = false;
@@ -90,6 +91,7 @@ public class HorizontalScrollViewEx extends ViewGroup {
         return intercepted;
     }
 
+    //自己处理 事件
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         mVelocityTracker.addMovement(event);
@@ -184,14 +186,14 @@ public class HorizontalScrollViewEx extends ViewGroup {
 
     private void smoothScrollBy(int dx, int dy) {
         mScroller.startScroll(getScrollX(), 0, dx, 0, 500);
-        invalidate();
+        invalidate(); //主线程
     }
 
     @Override
     public void computeScroll() {
         if (mScroller.computeScrollOffset()) {
             scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
-            postInvalidate();
+            postInvalidate(); //子线程
         }
     }
 

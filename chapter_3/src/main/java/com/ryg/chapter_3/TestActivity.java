@@ -28,7 +28,7 @@ public class TestActivity extends Activity implements OnClickListener,
 
     private static final int MESSAGE_SCROLL_TO = 1;
     private static final int FRAME_COUNT = 30;
-    private static final int DELAYED_TIME = 33;
+    private static final int DELAYED_TIME = 10000;
 
     private Button mButton1;
     private View mButton2;
@@ -46,7 +46,7 @@ public class TestActivity extends Activity implements OnClickListener,
                     // 方式1： scrollTo
                     float fraction = mCount / (float) FRAME_COUNT;
                     int scrollX = (int) (fraction * 100);
-                    mButton1.scrollTo(scrollX, 0);
+//                    mButton1.scrollTo(scrollX, 0);
 
                     //下一帧
                     mHandler.sendEmptyMessageDelayed(MESSAGE_SCROLL_TO, DELAYED_TIME);
@@ -60,6 +60,13 @@ public class TestActivity extends Activity implements OnClickListener,
             }
         };
     };
+
+    private Handler mHandlerOther = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            return false;
+        }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +95,7 @@ public class TestActivity extends Activity implements OnClickListener,
     @Override
     public void onClick(View v) {
         if (v == mButton1) {
+            //方式1：自身接口
 //             mButton1.setTranslationX(100);  //内容和本身都变
 //             mButton1.scrollTo(-100, 0);  //内容变，本书不变
 
@@ -105,20 +113,21 @@ public class TestActivity extends Activity implements OnClickListener,
 
              //方式2：动画
             // 3.3.2  实现弹性滑动
-             final int startX = 0;
-             final int deltaX = 100;
-             ValueAnimator animator = ValueAnimator.ofInt(0, 1).setDuration(1000);
-             animator.addUpdateListener(new AnimatorUpdateListener() {
-                 @Override
-                 public void onAnimationUpdate(ValueAnimator animator) {
-                 float fraction = animator.getAnimatedFraction();
-                 Log.d(TAG, "fraction=" + fraction);
-                 mButton1.scrollTo(startX + (int) (deltaX * fraction), 0);
-                 }
-             });
-             animator.start();
+//             final int startX = 0;
+//             final int deltaX = 100;
+//             ValueAnimator animator = ValueAnimator.ofInt(0, 1).setDuration(1000);
+//             animator.addUpdateListener(new AnimatorUpdateListener() {
+//                 @Override
+//                 public void onAnimationUpdate(ValueAnimator animator) {
+//                 float fraction = animator.getAnimatedFraction();
+//                 Log.d(TAG, "fraction=" + fraction);
+//                 mButton1.scrollTo(startX + (int) (deltaX * fraction), 0);
+//                 }
+//             });
+//             animator.start();
 
-//            mHandler.sendEmptyMessageDelayed(MESSAGE_SCROLL_TO, DELAYED_TIME);
+             //方式4
+            mHandler.sendEmptyMessageDelayed(MESSAGE_SCROLL_TO, DELAYED_TIME);
         }
         else if (v == mButton2) {
             Log.d(TAG, "button2.left=" + mButton2.getLeft());
