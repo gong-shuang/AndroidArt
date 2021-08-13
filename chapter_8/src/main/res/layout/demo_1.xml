@@ -12,6 +12,7 @@
         android:layout_margin="20dp"
         android:background="#000000"
         android:padding="20dp"
+        android:onClick="onclick"
         app:circle_color="@color/light_green" />
 
 </LinearLayout>
